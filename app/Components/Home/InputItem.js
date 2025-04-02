@@ -49,7 +49,6 @@ const InputItem = ({type}) => {
     <div className='bg-slate-200 p-3 rounded-lg mt-3 flex items-center gap-4'>
       <Image src={type=='source'?'/source.png':'/dest.jpg'} width={20} height={20} alt='logo'/>
       <GooglePlacesAutocomplete
-      apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
       selectProps={{
         value,
         onChange: (place)=>{getLatAndLng(place,type);
