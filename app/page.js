@@ -5,12 +5,16 @@ import { SourceContext } from "@/context/SourceContext";
 import { useState } from "react";
 import { DestinationContext } from "@/context/DestinationContext";
 import { LoadScript } from "@react-google-maps/api";
+import { FareContext } from "@/context/FareContext";
+
 
 export default function Home() {
   const [source,setSource]=useState([]);
   const [destination , setDestination] = useState([]); 
+  const [fare,setFare]=useState();
   return (
   
+    <FareContext.Provider value={{fare,setFare}}>
     <SourceContext.Provider value={{source,setSource}}>
       <DestinationContext.Provider value={{destination,setDestination}}>
         <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
@@ -27,5 +31,6 @@ export default function Home() {
      </LoadScript>
      </DestinationContext.Provider>
      </SourceContext.Provider>
+     </FareContext.Provider>
   );
 }
