@@ -2,12 +2,14 @@ import { CarListData } from "@/utils/CarListData";
 import React, {useContext, useState } from "react";
 import CarListItem from "./CarListItem";
 import { useRouter } from "next/navigation";
-import { FareContext } from "@/context/FareContext";
+import useFareStore from "@/app/Store/useFareStore";
+import useDistanceStore from "@/app/Store/useDistance";
 
 const CarListOptions = ({distance}) => {
   const [activeIndex,SetactiveIndex] = useState();
   const [SelectedCar , SetSelcetedCar] = useState([]);
-  const {fare,setFare} = useContext(FareContext);
+  const setfare =useFareStore((state)=>state.setFare);
+  const setdistance= useDistanceStore((state)=>state.setDistance);
   const router = useRouter();
   return (
     <div className="mt-5 overflow-auto h-[250px]">
@@ -25,10 +27,10 @@ const CarListOptions = ({distance}) => {
       rounded-lg w-full md:w-[30%] border-[1px] items-center">
         <h2>Make Payment for</h2>
         <button 
-        
+
          onClick={()=>{router.push('/payment');
-          setFare(SelectedCar.amount);
-          console.log("Setting Fare Value",fare);
+          setfare(SelectedCar.amount);
+          setdistance(distance);
          }
          }
          className="p-3 bg-black text-white rounded-lg text-center">Request{SelectedCar.name}</button>

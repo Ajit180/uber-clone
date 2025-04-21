@@ -2,10 +2,14 @@
 
 import Script from "next/script";
 import { useState } from "react";
+import useFareStore from "../Store/useFareStore";
+import usedistanceStore from "../Store/useDistance";
 
 const PaymentPage = () => {
-  const AMOUNT = 100;
   const [isProcessing, setIsProcessing] = useState(false);
+  const fare =useFareStore((state)=>state.fare);
+  const distance = usedistanceStore((state)=>state.distance);
+  const AMOUNT = Math.ceil((fare * distance) * 85);
 
   const handlePayment = async () => {
     setIsProcessing(true);
@@ -58,7 +62,7 @@ const PaymentPage = () => {
         </h1>
 
         <p className="text-lg text-gray-600 mb-6">
-          You need to pay{" "}
+          Fare is  ₹
           <span className="font-semibold text-black">{AMOUNT} INR</span>
         </p>
 
