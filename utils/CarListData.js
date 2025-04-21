@@ -4,7 +4,7 @@ export const CarListData =[
       name: 'Uber X',
       seat:1,
       desc:'Affordable , Everyday rides',
-      amount:0.1,
+      amount:1,
       image:'/car.jpg'
     },
     {
@@ -12,7 +12,7 @@ export const CarListData =[
         name: 'Uber Y',
         seat:2,
         desc:'Affordable , Everyday rides',
-        amount:0.2,
+        amount:1.2,
         image:'/carimage.jpg'
       },
       {
@@ -20,7 +20,7 @@ export const CarListData =[
         name: 'Uber Z',
         seat:3,
         desc:'Affordable , Everyday rides',
-        amount:0.4,
+        amount:1.8,
         image:'/car.jpg'
       },
 
@@ -29,7 +29,7 @@ export const CarListData =[
         name: 'Uber A',
         seat:4,
         desc:'Affordable , Everyday rides',
-        amount:1,
+        amount:1.9,
         image:'/carimage.jpg'
       },
 
