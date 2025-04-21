@@ -7,7 +7,8 @@ const GoogleMapSection = () => {
 
    const {source,setSource}=useContext(SourceContext);
   const {destination,setDestination}=useContext(DestinationContext);
-  const [directionRoutePoints , setDirectionRoutePoints]=useState([]);
+  const [directionRoutePoints , setDirectionRoutePoints] = useState(null);
+
 
   const containerStyle = {
     width: "100%",
