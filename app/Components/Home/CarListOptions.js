@@ -1,32 +1,21 @@
 import { CarListData } from "@/utils/CarListData";
-import React, { useContext, useState, useEffect } from "react";
+import React, {useContext, useState } from "react";
 import CarListItem from "./CarListItem";
 import { useRouter } from "next/navigation";
-import useFareStore from "@/app/Store/useFareStore";
-import useDistanceStore from "@/app/Store/useDistance";
+import { FareContext } from "@/context/FareContext";
 
 const CarListOptions = ({distance}) => {
   const [activeIndex,SetactiveIndex] = useState();
   const [SelectedCar , SetSelcetedCar] = useState([]);
   const {fare,setFare} = useContext(FareContext);
   const router = useRouter();
-
-  useEffect(() => {
-    console.log("Updated Fare:", fare);
-  }, [fare]);
-
   return (
     <div className="mt-5 overflow-auto h-[250px]">
       <h2 className="text-[22px] font-bold">Recommended</h2>
-      {CarListData.map((items, index) => (
-        <div
-          key={index}
-          className={`cursor-pointer p-2 rounded-md px-4 border-black ${activeIndex === index ? "border-[3px]" : ""}`}
-          onClick={() => {
-            setActiveIndex(index);
-            setSelectedCar(items);
-          }}
-        >
+      {CarListData.map((items,index) => (
+        <div className={`cursor-pointer p-2 rounded-md px-4 border-black ${activeIndex==index?'border-[3px]':null}`}
+        onClick={()=>{SetactiveIndex(index);
+          SetSelcetedCar(items)}}> 
           <CarListItem car={items} distance={distance} />
         </div>
       ))}

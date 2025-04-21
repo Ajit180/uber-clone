@@ -2,14 +2,10 @@
 
 import Script from "next/script";
 import { useState } from "react";
-import useFareStore from "../Store/useFareStore";
-import usedistanceStore from "../Store/useDistance";
 
 const PaymentPage = () => {
+  const AMOUNT = 100;
   const [isProcessing, setIsProcessing] = useState(false);
-  const fare =useFareStore((state)=>state.fare);
-  const distance = usedistanceStore((state)=>state.distance);
-  const AMOUNT = Math.ceil((fare * distance) * 85);
 
   const handlePayment = async () => {
     setIsProcessing(true);
@@ -21,7 +17,7 @@ const PaymentPage = () => {
       // Initialize Razorpay
       const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-        amount: AMOUNT*100,
+        amount: AMOUNT * 100,
         currency: "INR",
         name: "Ubertaxi Payment Gateway",
         description: "Test description",
@@ -52,8 +48,6 @@ const PaymentPage = () => {
     }
   };
 
-  
-
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 px-4">
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
@@ -64,7 +58,7 @@ const PaymentPage = () => {
         </h1>
 
         <p className="text-lg text-gray-600 mb-6">
-          Fare is  ₹
+          You need to pay{" "}
           <span className="font-semibold text-black">{AMOUNT} INR</span>
         </p>
 
