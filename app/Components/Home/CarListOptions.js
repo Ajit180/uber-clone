@@ -2,12 +2,13 @@ import { CarListData } from "@/utils/CarListData";
 import React, { useContext, useState, useEffect } from "react";
 import CarListItem from "./CarListItem";
 import { useRouter } from "next/navigation";
-import { FareContext } from "@/context/FareContext";
+import useFareStore from "@/app/Store/useFareStore";
+import useDistanceStore from "@/app/Store/useDistance";
 
-const CarListOptions = ({ distance }) => {
-  const [activeIndex, setActiveIndex] = useState();
-  const [selectedCar, setSelectedCar] = useState(null);
-  const { fare, setFare } = useContext(FareContext);
+const CarListOptions = ({distance}) => {
+  const [activeIndex,SetactiveIndex] = useState();
+  const [SelectedCar , SetSelcetedCar] = useState([]);
+  const {fare,setFare} = useContext(FareContext);
   const router = useRouter();
 
   useEffect(() => {
@@ -30,20 +31,19 @@ const CarListOptions = ({ distance }) => {
         </div>
       ))}
 
-      {selectedCar?.name && (
-        <div className="flex justify-between fixed bottom-5 bg-white p-3 shadow-xl rounded-lg w-full md:w-[30%] border-[1px] items-center">
-          <h2>Make Payment for</h2>
-          <button
-            onClick={() => {
-              setFare(selectedCar.amount);
-              router.push("/payment");
-            }}
-            className="p-3 bg-black text-white rounded-lg text-center"
-          >
-            Request {selectedCar.name}
-          </button>
-        </div>
-      )}
+    {SelectedCar?.name?
+      <div className="flex justify-between fixed bottom-5 bg-white p-3 shadow-xl 
+      rounded-lg w-full md:w-[30%] border-[1px] items-center">
+        <h2>Make Payment for</h2>
+        <button 
+        
+         onClick={()=>{router.push('/payment');
+          setFare(SelectedCar.amount);
+          console.log("Setting Fare Value",fare);
+         }
+         }
+         className="p-3 bg-black text-white rounded-lg text-center">Request{SelectedCar.name}</button>
+      </div>:null}
     </div>
   );
 };
