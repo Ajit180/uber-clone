@@ -143,17 +143,19 @@ const GoogleMapSection = () => {
 
       </MarkerF>:null}
 
-      <DirectionsRenderer 
-      directions={directionRoutePoints}
-      options={{
-        polylineOptions:{
-          strokeColor:'#000',
-          strokeWeight:7
-        },
-           suppressMarkers:true
-      }}
+    { directionRoutePoints && (
+        <DirectionsRenderer 
+        directions={directionRoutePoints}
+        options={{
+          polylineOptions:{
+            strokeColor:'#000',
+            strokeWeight:7
+          },
+             suppressMarkers:true
+        }}/>
+    )}
       
-      />
+      
     </GoogleMap>
   ) 
 };

@@ -22,14 +22,14 @@ const Header = () => {
         <Image src={"/logo.png"} width={70} height={70} alt="Logo" />
         <div className="flex gap-6 items-center">
           {headerMenu.map((item) => (
-            <div className="flex gap-2 items-center">
+            <div key={item.id} className="flex gap-2 items-center">
               <Image src={item.icon} height={17} width={17} alt={item.name} />
               <h2 className="text-[14px] font-medium">{item.name}</h2>
             </div>
           ))}
         </div>
       </div>
-      <UserButton/>
+      <UserButton />
     </div>
   );
 };
